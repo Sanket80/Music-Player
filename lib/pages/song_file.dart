@@ -45,33 +45,38 @@ class SongPage extends StatelessWidget {
                   height: 25,
                 ),
                 NeuBox(
-                    child: ClipRRect(
-                  borderRadius: BorderRadius.circular(8),
-                  child: Image.asset(currentSong.albumArtImagePath),
-                )),
-                Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  child: Column(
                     children: [
-                      Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        children: [
-                          Text(
-                            currentSong.songName,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.bold,
-                            ),
-                          ),
-                          Text("Ne-Yo"),
-                        ],
+                      ClipRRect(
+                        borderRadius: BorderRadius.circular(8),
+                        child: Image.asset(currentSong.albumArtImagePath),
                       ),
-                      IconButton(
-                        onPressed: () {},
-                        icon: Icon(
-                          Icons.favorite,
-                          color: Colors.red,
+                      Padding(
+                        padding: const EdgeInsets.all(15.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Column(
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Text(
+                                  currentSong.songName,
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                Text("Ne-Yo"),
+                              ],
+                            ),
+                            IconButton(
+                              onPressed: () {},
+                              icon: Icon(
+                                Icons.favorite,
+                                color: Colors.red,
+                              ),
+                            ),
+                          ],
                         ),
                       ),
                     ],
@@ -83,7 +88,7 @@ class SongPage extends StatelessWidget {
                 Column(
                   children: [
                     Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                      padding: const EdgeInsets.symmetric(horizontal: 25.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
@@ -110,21 +115,46 @@ class SongPage extends StatelessWidget {
                   ],
                 ),
                 SizedBox(
-                  height: 25,
+                  height: 15,
                 ),
                 Row(
                   children: [
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.skip_previous),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          value.currentSongIndex =
+                              (value.currentSongIndex ?? 0) - 1;
+                        },
+                        child: NeuBox(
+                          child: Icon(Icons.skip_previous),
+                        ),
+                      ),
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.play_arrow),
+                    SizedBox(
+                      width: 25,
                     ),
-                    IconButton(
-                      onPressed: () {},
-                      icon: Icon(Icons.skip_next),
+                    Expanded(
+                      flex: 2,
+                      child: GestureDetector(
+                        onTap: () {},
+                        child: NeuBox(
+                          child: Icon(Icons.play_arrow),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 25,
+                    ),
+                    Expanded(
+                      child: GestureDetector(
+                        onTap: () {
+                          value.currentSongIndex =
+                              (value.currentSongIndex ?? 0) + 1;
+                        },
+                        child: NeuBox(
+                          child: Icon(Icons.skip_next),
+                        ),
+                      ),
                     ),
                   ],
                 )
